@@ -1,4 +1,4 @@
-# Replication and Extension of SAC3
+# Replicating and Extending SAC3 for Hallucination Detection in LLMs
 
 ## Introduction
 This project replicates and extends the SAC3 method for detecting hallucinations in large language models (LLMs). SAC3 improves traditional self-consistency checks by incorporating semantically equivalent question perturbations and cross-model response consistency. Semantic-aware cross-check consistency (SAC3) is a novel sampling-based hallucination detection method that expands on the principle of self-consistency checking and incorporates additional mechanisms to detect both question-level and model-level hallucinations by leveraging advances including semantically equivalent question perturbation and cross-model response consistency checking. 
