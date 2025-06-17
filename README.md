@@ -1,56 +1,67 @@
 # Replicating and Extending SAC3 for Hallucination Detection in LLMs
 
 ## Introduction
-This project replicates and extends the SAC3 method for detecting hallucinations in large language models (LLMs). SAC3 improves traditional self-consistency checks by incorporating semantically equivalent question perturbations and cross-model response consistency. Semantic-aware cross-check consistency (SAC3) is a novel sampling-based hallucination detection method that expands on the principle of self-consistency checking and incorporates additional mechanisms to detect both question-level and model-level hallucinations by leveraging advances including semantically equivalent question perturbation and cross-model response consistency checking. 
+This project replicates and extends the **SAC3** (Semantic-Aware Cross-Check Consistency) method for detecting hallucinations in large language models (LLMs). Originally proposed by Zhang et al. (2023), SAC3 improves on traditional self-consistency checking (SC2) by incorporating:
+
+- **Semantically equivalent question perturbations**
+- **Cross-model response consistency checks**
+
+These mechanisms allow SAC3 to detect both **question-level** and **model-level** hallucinations more reliably.
+
+---
 
 ## Project Overview
 
-### Preparation
-- **Literature Review**: Thoroughly reviewed the SAC3 paper and methodology.
-- **Code Setup**: Adapted the authors' code for use in Google Colab.
+### Replication
+- Reproduced SAC3 on binary classification (e.g., prime number, senator search) and open-domain QA tasks (e.g., HotpotQA-halu).
+- Validated results using **GPT-3.5** and **GPT-4**, matching findings from the original paper.
+- Evaluated performance across different self-response counts (3, 5, 10, 15) and perturbed questions (5, 10).
 
-### Replication Work
-- **Initial Testing**: Evaluated datasets on GPT-3.5-turbo for binary classification and open-domain QA tasks.
-- **Method Understanding**: Explored the effects of varying the number of self-responses and perturbed questions.
-- **Model Testing**: Tested SAC3 on larger models (Guanaco-33b, Falcon-7b) and expanded datasets.
+### Extension
+- Applied SAC3 to **smaller open-source models** (<10B parameters): LLaMA-3-8B, Gemma-7B, Mistral-7B, Phi-3-mini, Qwen1.5-7B.
+- Customized code and prompts for integration with each model.
+- Implemented **bootstrap sampling** (50 samples/model) to improve evaluation reliability.
 
-### Extended Work
-- **Smaller Models**: Evaluated SAC3 on models with fewer than 10 billion parameters due to hardware constraints.
-- **Customization**: Modified code and prompts for different model characteristics.
-- **Bootstrap Testing**: Used bootstrap sampling to achieve more reliable results across multiple models.
+---
 
 ## Key Findings
-- **Robustness**: SAC3 effectively detects hallucinations across various models.
-- **Performance Variability**: High variability indicates the need for further testing with larger datasets.
+- **Cross-checking with perturbed questions consistently outperformed self-consistency checks** across models.
+- SAC3 is robust across diverse architectures, but performance can vary significantly—highlighting the importance of dataset diversity and GPU availability.
 
-## Conclusion
-SAC3 shows promise in enhancing hallucination detection in LLMs. Future work should focus on optimizing computational efficiency and expanding model and data testing.
+---
 
-## 🤖 Installation
+### Results Visualization
+
+#### AUROC Comparison: 5 Responses vs. 5 Perturbed Questions
+![Chart 1](chart1_auroc_5_responses.png)
+
+#### AUROC Comparison: 10 Responses vs. 10 Perturbed Questions
+![Chart 2](chart2_auroc_10_responses.png)
+
+---
+
+## Setup & Installation
 
 ### Requirements
+- `Python 3.8`
+- `openai <= 0.28.1`
 
-- python 3.8
-- openai <= 0.28.1
-
-### Create env and download all the packages required as follows:
-
-```
+### Install via Conda
+```bash
 conda create -n sac3 python=3.8
-source activate sac3
+conda activate sac3
 pip install -r requirements.txt
 ```
 
 ## Instructions
 
-### Using the Google Colab Notebook
+### Run in Google Colab
 
-1. Open the Google Colab website.
-2. Upload your notebook file (.ipynb) to Google Colab.
-3. Run the cells in the notebook sequentially to replicate and extend the SAC3 method.
-4. Make sure to adjust any file paths and environment settings as needed within the notebook.
-
-**Note:** for Gemma-7B-it, please choose A100 GPU for high RAM.
+1. Open the notebook in Google Colab.
+2. Upload or open your .ipynb file.
+3. Run all cells in sequence.
+4. Adjust file paths and model-specific prompts as needed.
+💡 Note: For Gemma-7B-it, select A100 GPU with High-RAM in Colab.
 
 ## Citation 
 
