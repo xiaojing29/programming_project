@@ -33,10 +33,10 @@ These mechanisms allow SAC3 to detect both **question-level** and **model-level*
 ### Results Visualization
 
 #### AUROC Comparison: 5 Responses vs. 5 Perturbed Questions
-![Chart 1](chart1_auroc_5_responses.png)
+![Chart 1](charts/chart1_auroc_5_responses.png)
 
 #### AUROC Comparison: 10 Responses vs. 10 Perturbed Questions
-![Chart 2](chart2_auroc_10_responses.png)
+![Chart 2](charts/chart2_auroc_10_responses.png)
 
 ---
 
